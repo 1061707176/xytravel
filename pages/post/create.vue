@@ -35,6 +35,12 @@
       <el-col class="aside" :span="6">
         <div class="caogao">
           <h4>草稿箱 (0)</h4>
+          <div v-for="(item,index) in arr" :key="index">
+            {{item.title}} <span class="iconfont el-icon-edit bi"></span>
+            <div>
+              {{item.time}}
+            </div>
+          </div>
         </div>
       </el-col>
     </el-row>
@@ -111,6 +117,7 @@ export default {
     caogao() {
       let textcont = this.$refs.vueEditor.editor.root.innerHTML;
       this.timer = moment(this.currentTime).format(`YYYY-MM-DD`);
+      this.arr=JSON.parse(localStorage.getItem('posts'))
       this.arr.push({
         title: this.form.name,
         content: textcont,
@@ -165,7 +172,13 @@ export default {
     },
     handleDepartSelect() {}
   },
-
+mounted(){
+if(this.arr=JSON.parse(localStorage.getItem('posts'))){
+  this.arr=JSON.parse(localStorage.getItem('posts'))
+}else{
+   localStorage.setItem('posts','[]')
+}
+},
   components: {
     VueEditor
   }
