@@ -18,12 +18,13 @@ import Header from "@/components/header";
 // 导入footer页脚组件
 import Footer from "@/components/footer";
 
+
+
 export default {
-  
   // 注册组件
   components: {
     Header,
-    Footer
+    Footer,
   },
 }
 </script>

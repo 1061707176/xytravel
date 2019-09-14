@@ -1,5 +1,6 @@
-
+﻿
 export default {
+  
   mode: 'universal',
   /*
   ** Headers of the page
@@ -13,7 +14,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_1168872_ehvuah8v57g.css'}
+      { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_1407907_8ov85g7sg53.js'}
     ]
   },
   /*
