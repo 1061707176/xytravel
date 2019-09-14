@@ -1,6 +1,8 @@
 <template>
+
   <div style="padding: 50px">
-      高德地图
+      <a href="https://hotels.ctrip.com/hotel/694679.html">高德地图</a>
+      
       <div id="container"></div> 
   </div>
 </template>
