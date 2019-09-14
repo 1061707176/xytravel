@@ -8,19 +8,19 @@
       :key="index"
     >
       <el-col :span="8" style="padding-left: 10px; padding-right: 10px;">
-        <nuxt-link :to="`/hotel/detail?id=${item.id}`">
+        <nuxt-link :to="`/hotel/hotelDetails?id=${item.id}`">
           <img data-v-0a769ebc :src="item.photos" :alt="item.name" width="320" height="210" />
         </nuxt-link>
       </el-col>
       <el-col :span="10" style="padding:0 15px;">
         <h4>
-          <nuxt-link :to="`/hotel/detail?id=${item.id}`">{{item.name}}</nuxt-link>
+          <nuxt-link :to="`/hotel/hotelDetails?id=${item.id}`">{{item.name}}</nuxt-link>
         </h4>
         <el-col style="padding:5px 0;">
           <span>{{item.alias}}</span>
-          <i class="iconfont iconhuangguan" style="color:#f90"></i>
-          <i class="iconfont iconhuangguan" style="color:#f90"></i>
-          <i class="iconfont iconhuangguan" style="color:#f90"></i>
+          <i class="iconfont iconhuangguan2" style="color:#f90"></i>
+          <i class="iconfont iconhuangguan2" style="color:#f90"></i>
+          <i class="iconfont iconhuangguan2" style="color:#f90"></i>
           <span>经济型</span>
           <el-row type="flex" justify="space-between" style="padding:5px 0;">
             <el-col :span="10">
@@ -44,7 +44,7 @@
             </el-col>
           </el-row>
           <el-row>
-            <i class="iconfont iconlocation"></i>
+            <i class="iconfont icon-ditu-dibiao"></i>
             <span>位于: {{item.address}}</span>
           </el-row>
         </el-col>
