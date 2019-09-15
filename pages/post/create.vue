@@ -34,6 +34,7 @@
       </el-col>
       <el-col class="aside" :span="6">
         <div class="caogao">
+          
           <h4>草稿箱 ({{this.arr.length}})</h4>
           <div v-for="(item,index) in arr" :key="index">
             <div class="bi" @click="bianji(item)">

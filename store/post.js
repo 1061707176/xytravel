@@ -1,10 +1,11 @@
-// 用户管理
-export const state = () => {
+
+export const state=()=>{
     return {
-        
+        nickName:''
     }
 }
-
-export const mutations = {
-    setUserInfo(){}
-};
+export const mutations={
+   setNickName(state,data){
+       state.nickName=data
+   }
+}

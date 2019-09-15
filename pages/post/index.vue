@@ -4,7 +4,10 @@
       <div class="main_left">
         <div class="dv" style="width:260px">
           <div v-for="(item,i) in form" :key="i" class="hotCity">
-            <a @mouseenter="getIndex(i)" @mouseleave="hiddenHotCity">{{item.type}}</a>
+            <a @mouseenter="getIndex(i)" @mouseleave="hiddenHotCity">
+              {{item.type}}
+              <i class="el-icon-arrow-right" style="float:right;line-height:41px"></i>
+            </a>
           </div>
           <div
             class="hotCity_menu"
@@ -47,13 +50,11 @@
         <!-- --------------关键字----------------------- -->
         <div class="Keyword">
           <span>推荐：</span>
-          <!-- <a href="#">&nbsp;北京&nbsp;</a> -->
           <a
             @click="getNewContent(item)"
             v-for="(item,index) in city"
             :key="index"
           >&nbsp;{{item}}&nbsp;</a>
-          <!-- <a href="javascript">&nbsp;广州&nbsp;</a> -->
         </div>
         <!-- --------------关键字end----------------------- -->
 
@@ -68,7 +69,6 @@
         <div class="article">
           <ul>
             <li v-for="(item,index) in content" :key="index">
-              <!-- :class="{imgMin3:item.images.length<3,imgMax3:item.images.length>=3}" -->
               <div v-if="item.images.length>=3">
                 <div>
                   <h4>
@@ -145,7 +145,7 @@
 export default {
   data() {
     return {
-      setI: -1, //鼠标移动事件的默认索引为0
+      setI: 0, //鼠标移动事件的默认索引为0
       ifGetCities: false,
       isCollapse: true,
       form: [{ type: "", chirdren: [] }], //防止获取不到数据报错
@@ -156,7 +156,10 @@ export default {
       // 分页
       total: 0,
       pageNum: 1, //当前页数
-      pageSize: 3 //每页显示条目个数
+      pageSize: 3, //每页显示条目个数
+       _limit: 3, //分页的条数
+      _start: 0, //分页开始数据
+      cities:null
     };
   },
   methods: {
@@ -184,12 +187,13 @@ export default {
     },
     //热门城市列表的点击事件
     async getHotCities(v) {
+      this.cities=v.city
       let res = await this.$axios({
         url: "/posts",
         params: {
-          _start: (this.pageNum - 1) * this.pageSize,
+          _start: this._start,
           _limit: this.pageSize,
-          city: v.city
+          city: this.cities
         }
       });
       this.total = res.data.total;
@@ -206,8 +210,9 @@ export default {
       let res = await this.$axios({
         url: "/posts",
         params: {
-          _start: (this.pageNum - 1) * this.pageSize,
-          _limit: this.pageSize
+          _start: this._start,
+          _limit: this.pageSize,
+          city: this.cities
         }
       });
       this.content = res.data.data;
@@ -219,12 +224,14 @@ export default {
     },
     //推荐城市的文章
     async getNewContent(value) {
+      console.log(value);
+      this.cities=value
       let res = await this.$axios({
         url: "/posts",
         params: {
-          _start: (this.pageNum - 1) * this.pageSize,
+          _start: this._start,
           _limit: this.pageSize,
-          city: value
+          city: this.cities
         }
       });
       this.total = res.data.total;
@@ -234,12 +241,13 @@ export default {
     },
     //搜索城市
     async wantGoCity() {
+      this.cities=this.wantGo
       let res = await this.$axios({
         url: "/posts",
         params: {
           _start: (this.pageNum - 1) * this.pageSize,
           _limit: this.pageSize,
-          city: this.wantGo
+          city: this.cities
         }
       });
       this.total = res.data.total;
@@ -256,7 +264,9 @@ export default {
 
     //第几页
     handleCurrentChange(v) {
-      this.pageNum = v;
+      console.log(v);
+      this._start = (v-1)*this.pageSize;
+      console.log(this._start);
       this.init();
     },
     // 每页几条
@@ -351,6 +361,9 @@ export default {
   border: 1px solid #ccc;
   border-bottom: 0;
   box-sizing: border-box;
+  &:hover{
+    border-right:0;
+  }
   a {
     padding: 0 20px;
     cursor: pointer;
@@ -368,14 +381,15 @@ export default {
   background-color: #fff;
   z-index: 1;
   position: absolute;
-  left: 260px;
+  left: 259px;
   top: 0;
   padding: 10px 20px;
   width: 350px;
   height: 202px;
   box-sizing: border-box;
   border: 1px solid #ccc;
-  border-left: 0;
+  // border-left: 0;
+  
   li {
     cursor: pointer;
     height: 30px;
