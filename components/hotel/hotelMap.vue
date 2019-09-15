@@ -192,7 +192,7 @@ export default {
       setTimeout(() => {
         this.setMapInfo();
         //  this.setMarker()
-      }, 500);
+      }, 400);
     };
 
   }
