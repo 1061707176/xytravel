@@ -28,15 +28,28 @@
           <div class="recommend">推荐</div>
         </div>
       </el-col>
-      <el-col :span="3">
-        <div class="grid-content bg-purple">环境</div>
+      <el-col :span="3" style=" position: relative">
+        <el-progress  type="circle" :percentage="pinfen.environment*10" :width="70" :stroke-width='2' color="#f7ba2a" :text-inside="true" :show-text="true"></el-progress>
+        <div class='huanxin'>
+          <span>环境</span><br/>
+          <span>{{pinfen.environment}}</span>
+        </div>
       </el-col>
-      <el-col :span="3">
-        <div class="grid-content bg-purple">产品</div>
+      <el-col :span="3" style=" position: relative">
+        <el-progress  type="circle" :percentage="pinfen.product*10" :width="70" :stroke-width='2' color="#f7ba2a" :text-inside="true" :show-text="true"></el-progress>
+       <div class='huanxin'>
+          <span>产品</span><br/>
+          <span>{{pinfen.product}}</span>
+        </div>
       </el-col>
-      <el-col :span="3">
-        <div class="grid-content bg-purple">服务</div>
+      <el-col :span="3" style=" position: relative">
+         <el-progress  type="circle" :percentage="pinfen.serve*10" :width="70" :stroke-width='2' color="#f7ba2a" :text-inside="true" :show-text="true"></el-progress>
+        <div class='huanxin'>
+          <span>服务</span><br/>
+          <span ref="fen" >{{pinfen.serve}}</span>
+        </div>
       </el-col>
+      
     </el-row>
   </div>
 </template>
@@ -45,7 +58,12 @@
 export default {
     data(){
         return{
-            value5: 0
+            value5: 2,
+            pinfen:{
+              environment:'',
+              product:'',
+              serve:''
+            }
         }
     },
   props: {
@@ -60,9 +78,16 @@ export default {
 mounted(){
     // 获取分数值
     setTimeout(()=>{
-        // console.log(this.data[0].stars)
+        console.log(this.data[0])
+        console.log(this.data[0].scores)
         this.value5= this.data[0].stars
+        this.pinfen.environment=this.data[0].scores.environment
+        this.pinfen.product=this.data[0].scores.product
+        this.pinfen.serve=this.data[0].scores.service
     },300)
+        console.log(this.pinfen.environment)
+      
+  
     }
 };
 </script>
@@ -102,5 +127,12 @@ mounted(){
       margin-top: 25px;
     }
   }
+}
+.huanxin{
+  text-align: center;
+  color:rgb(255, 153, 0);
+  position: absolute;
+  top: 15px;
+  left: 28px;
 }
 </style>
