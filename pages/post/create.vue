@@ -52,6 +52,8 @@
 
 <script>
 import moment from "moment";
+
+
 import "quill/dist/quill.snow.css";
 let VueEditor;
 if (process.browser) {
@@ -151,7 +153,7 @@ export default {
       let city = this.form.departCity;
 
       // console.log(title,content,city)
-     if(this.form.title && this.form.city && this.form.content){
+     if(this.form.title && this.form.city && content){
         this.$axios({
         url: "posts",
         method: "POST",
