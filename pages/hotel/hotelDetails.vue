@@ -78,12 +78,12 @@ export default {
         this.$axios({
             url:"http://157.122.54.189:9095/hotels",
             params:{
-                id:1
+                id:this.$route.query.id
             }
         }).then(res=>{
             // console.log(res)
             this.hotelContent = res.data.data
-            console.log(this.hotelContent,123)
+            // console.log(this.hotelContent,123)
         })
     },
     // 引入子组件

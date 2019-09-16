@@ -15,7 +15,11 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_1407907_cs3uwvs318q.css'}
-    ]
+    ],
+    script:[
+      {src:"http://webapi.amap.com/maps?v=1.4.4&key=9bf3b4662fd7b65edd057826ae2ea2fa&callback=init"},
+
+  ]
   },
   /*
   ** Customize the progress-bar color
